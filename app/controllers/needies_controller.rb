@@ -1,0 +1,2 @@
+class NeediesController < ApplicationController
+end
