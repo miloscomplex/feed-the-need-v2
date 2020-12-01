@@ -9,10 +9,10 @@ class SessionsController < ApplicationController
     @donator = Donator.find_by(name: params[:user][:name])
     @needy = Needy.find_by(name: params[:user][:name])
     if @donator && @donator.authenticate(params[:user][:password])
-      session[:donator_id] = @donator.id
+      session[:user_id] = @donator.id
       redirect_to donator_path(@donator)
     else if @needy && @needy.authenticate(params[:user][:password])
-        session[:needy_id] = @needy.id
+        session[:user_id] = @needy.id
         redirect_to needy_path(@needy)
       else
       flash[:notice] = "Incorrect Password or Username"
