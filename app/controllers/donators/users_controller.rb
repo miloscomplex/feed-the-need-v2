@@ -1,4 +1,4 @@
-class Donators::DonatorsController < ApplicationController
+class Donators::UsersController < ApplicationController
   #before_action :require_login, except: [:login]
 
   def new

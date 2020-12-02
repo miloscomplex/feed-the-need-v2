@@ -1,4 +1,4 @@
-class Needy::NeedyController < ApplicationController
+class Needy::UsersController < ApplicationController
   # before_action :require_login, except: [:login]
 
   def new
