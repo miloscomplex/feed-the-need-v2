@@ -1,3 +1,3 @@
-class Donators::ItemsController
+class Donators::ItemsController < ApplicationController
 
 end

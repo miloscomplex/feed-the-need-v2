@@ -1,5 +1,5 @@
-class DonatorsController < ApplicationController
-  before_action :require_login, except: [:login]
+class Donators::DonatorsController < ApplicationController
+  #before_action :require_login, except: [:login]
 
   def new
     @donator = Donator.new
@@ -11,12 +11,12 @@ class DonatorsController < ApplicationController
       session[:user_id] = @donator.id
       redirect_to donator_path(@donator)
     else
-      redirect_to donators_new_path
+      redirect_to new_donator_path
     end
   end
 
-  def index
-    @donator = Donator.find_by(id: params[:id])
+  def show
+    #@donator = Donator.find_by(id: params[:id])
   end
 
   def login
@@ -40,9 +40,11 @@ class DonatorsController < ApplicationController
     unless logged_in?
       flash[:error] = "You must be logged in to access this section"
       redirect_to donators_login_path
+    end
   end
 
   def logged_in?
-    session.include? :donator_id 
+    session.include? :donator_id
   end
+
 end

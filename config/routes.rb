@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :needy, :donators
+  resources :needy, controller: 'needy/needy'
+  resources :donators, controller: 'donators/donators'
 
   namespace :needy do
     resources :items
