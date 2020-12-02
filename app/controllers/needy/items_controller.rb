@@ -1,0 +1,3 @@
+class Needy::ItemsController
+
+end

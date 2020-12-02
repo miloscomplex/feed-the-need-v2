@@ -3,8 +3,8 @@ class CreateItems < ActiveRecord::Migration[6.0]
     create_table :items do |t|
       t.string :name
       t.integer :quantity
-      t.string :donator_id
-      t.string :needy_id
+      t.belongs_to :donator, foreign_key: true
+      t.belongs_to :needy, foreign_key: true 
       t.timestamps
     end
   end

@@ -1,0 +1,3 @@
+class Donators::ItemsController
+
+end
