@@ -34,7 +34,7 @@ class Donators::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:donator).permit(:nane, :email, :password, :password_confirmation)
+    params.require(:donator).permit(:name, :email, :password, :password_confirmation)
   end
 
   def require_login

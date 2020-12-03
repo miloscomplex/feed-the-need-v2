@@ -5,14 +5,26 @@ class Donators::ItemsController < ApplicationController
     @items = Items.all
   end
 
-  def show
-
+  def edit
+    @items = Item.find_by(id: params[:id])
   end
+
+  def update
+    @items = Item.find(params[:id])
+    @items.update(items_params)
+    redirect_to donator_path(@items.donator_id)
+  end
+
+
 
   private
 
   def set_item
     @item = Item.find_by(id: params[:id])
+  end
+
+  def items_params
+    params.require(:item).permit(:donator_id)
   end
 
 end

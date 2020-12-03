@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
 
   namespace :donators do
-    resources :items
+    resources :items, :except [:new, :create, :destroy]
     get '/login', to: 'sessions#login', as: 'login'
     post '/login', to: 'sessions#create'
   end
