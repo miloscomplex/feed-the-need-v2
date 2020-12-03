@@ -10,14 +10,13 @@
   </head>
 
   <body>
-    <% if flash[:messages]&.present?  %>
-      <% flash[:messages].each do |flash| %>
-        <div>
+    <% if flash[:error]&.present?  %>
+      <%# flash[:error].each do |flash| %>
+        <div class="error">
           <%# binding.pry %>
-          <%= flash %>
+          <%= flash[:error] %>
         </div>
       <% end %>
-    <% end %>
 
     <%= yield %>
   </body>

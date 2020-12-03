@@ -12,7 +12,7 @@ class Donators::UsersController < ApplicationController
       redirect_to donator_path(@donator)
     else
       flash[:error] = "Something went wrong"
-      redirect_to new_donator_path
+      render :new
     end
   end
 
@@ -27,7 +27,7 @@ class Donators::UsersController < ApplicationController
       redirect_to donator_path(@needy)
     else
       flash[:notice] = "Incorrect Password or Username"
-      redirect_to donator_login_path
+      redirect_to donators_login_path
     end
   end
 
