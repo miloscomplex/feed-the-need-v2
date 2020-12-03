@@ -1,0 +1,14 @@
+<h1>New Donator</h1>
+
+<%= form_with model: @donator do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <br>
+  <%= form.label :email %>
+  <%= form.text_field :email %>
+  <br>
+  <%= form.label :password %>
+  <%= form.text_field :password %>
+  <br>
+  <%= form.submit %>
+<% end %>

@@ -11,12 +11,13 @@ class Donators::UsersController < ApplicationController
       session[:user_id] = @donator.id
       redirect_to donator_path(@donator)
     else
+      flash[:error] = "Something went wrong"
       redirect_to new_donator_path
     end
   end
 
   def show
-    #@donator = Donator.find_by(id: params[:id])
+    @donator = Donator.find_by(id: params[:id])
   end
 
   def login
@@ -33,7 +34,7 @@ class Donators::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:donator).permit(:nane, :email, :password, :password_confirmation)
   end
 
   def require_login
