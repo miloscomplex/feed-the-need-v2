@@ -19,17 +19,6 @@ class Needy::UsersController < ApplicationController
     @needy = Needy.find_by(id: params[:id])
   end
 
-  def login
-    @needy = Needy.find_by(email: params[:email])
-    if @needy && @needy.authenticate(params[:password])
-      session[:needy_id] = @needy.id
-      redirect_to needy_path(@needy)
-    else
-      flash[:notice] = "Incorrect Password or Username"
-      redirect_to needy_login_path
-    end
-  end
-
   private
 
   def user_params
