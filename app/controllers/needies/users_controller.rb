@@ -19,10 +19,14 @@ class Needies::UsersController < ApplicationController
     @needy = Needy.find_by(id: params[:id])
   end
 
+  def show
+    @needy = Needy.find_by(id: params[:id])
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:needy).permit(:name, :email, :password, :password_confirmation)
   end
 
   def require_login
