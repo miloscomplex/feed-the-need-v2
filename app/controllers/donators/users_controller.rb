@@ -20,17 +20,6 @@ class Donators::UsersController < ApplicationController
     @donator = Donator.find_by(id: params[:id])
   end
 
-  def login
-    @donator = Donator.find_by(email: params[:email])
-    if @donator && @donator.authenticate(params[:password])
-      session[:donator_id] = @donator.id
-      redirect_to donator_path(@needy)
-    else
-      flash[:notice] = "Incorrect Password or Username"
-      redirect_to donators_login_path
-    end
-  end
-
   private
 
   def user_params

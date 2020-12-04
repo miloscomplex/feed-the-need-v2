@@ -8,10 +8,10 @@ class Donators::SessionsController < ApplicationController
     @donator = Donator.find_by(email: params[:email])
     if @donator && @donator.authenticate(params[:password])
       session[:donator_id] = @donator.id
-      redirect_to needy_path(@donator)
+      redirect_to donator_path(@donator)
     else
-      flash[:messages] = "Incorrect Password or Username"
-      redirect_to donators_login_path
+      flash[:error] = "Incorrect Password or Username"
+      redirect_to login_path
     end
   end
 

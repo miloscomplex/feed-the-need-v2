@@ -1,6 +1,6 @@
 <h1>New Needy</h1>
 
-<%= form_with model: @needy do |form| %>
+<%= form_with model: (@needy, url: needy_path ) do |form| %>
   <%= form.label :name %>
   <%= form.text_field :name %>
   <br>
