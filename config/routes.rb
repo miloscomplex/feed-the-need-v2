@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions/sessions#login', as: 'login'
   post '/login', to: 'sessions/sessions#create'
 
-  namespace :needies do
+  namespace :needies, path: 'needy' do
     #get '/login', to: 'sessions#login', as: 'login'
     #post '/login', to: 'sessions#create'
     resources :items
@@ -17,8 +17,8 @@ Rails.application.routes.draw do
     #post '/login', to: 'sessions#create'
   end
 
-  resources :needies, controller: 'needies/users'
-  resources :donators, controller: 'donators/users'
+  resources :needies, controller: 'needies/users', path: 'needy'
+  resources :donators, controller: 'donators/users', path: 'needy'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
 end

@@ -1,5 +1,5 @@
-class Needy::ItemsController
-
+class Needies::ItemsController  < ApplicationController
+  
   def new
     @item = Item.new
   end
@@ -24,8 +24,6 @@ class Needy::ItemsController
 
   def item_params
     params.require(:item).permit(:name, :quantity, :needy_id)
-  end
-
   end
 
 end
