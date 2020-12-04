@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   end
 
   resources :needies, controller: 'needies/users', path: 'needy'
-  resources :donators, controller: 'donators/users', path: 'needy'
+  resources :donators, except: [:index], controller: 'donators/users'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
 end

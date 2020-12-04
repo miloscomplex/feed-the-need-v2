@@ -1,6 +1,6 @@
 <h1>New Donator</h1>
 
-<%= form_with model: @donator do |form| %>
+<%= form_with model: @donator, local: true do |form| %>
   <%= form.label :name %>
   <%= form.text_field :name %>
   <br>

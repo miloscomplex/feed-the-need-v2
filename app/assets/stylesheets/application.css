@@ -14,5 +14,13 @@
  *= require_self
  */
 .error {
-  color: red; 
+  color: red;
+}
+
+.field_with_errors {
+  color: red;
+}
+
+.field_with_errors input {
+  border-color: red;
 }
