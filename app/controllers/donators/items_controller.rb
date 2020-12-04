@@ -2,7 +2,7 @@ class Donators::ItemsController < ApplicationController
   before_action :set_item, only: [:show]
 
   def index
-    @items = Items.all
+    @items = Item.all
   end
 
   def edit

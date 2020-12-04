@@ -5,16 +5,16 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions/sessions#login', as: 'login'
   post '/login', to: 'sessions/sessions#create'
 
-  namespace :needies, path: 'needy' do
-    resources :items
+  resources :needies, controller: 'needies/users', path: 'needy' do
+    resources :items, controller: 'needies/items'
   end
 
-  namespace :donators do
-    resources :items, except: [:new, :create, :destroy]
+  resources :donators, except: [:index], controller: 'donators/users' do
+    resources :items, except: [:new, :create, :destroy], controller: 'donators/items'
   end
 
-  resources :needies, controller: 'needies/users', path: 'needy'
-  resources :donators, except: [:index], controller: 'donators/users'
+  #resources :needies, controller: 'needies/users', path: 'needy'
+  #resources :donators, except: [:index], controller: 'donators/users'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
 end

@@ -1,7 +1,8 @@
 class Donator < ApplicationRecord
   has_secure_password
 
-  validates :name, :email, presence: true
-  validates :password, confirmation: true 
+  validates :name, :email, :password, presence: true
+  validates :email, uniqueness: true
+  validates :password, confirmation: true
 
 end

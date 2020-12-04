@@ -10,12 +10,12 @@ class Sessions::SessionsController < ApplicationController
     if @donator && @donator.authenticate(params[:password])
       session[:user_id] = @donator.id
       session[:user_type] = :donator
-      binding.pry
+      #binding.pry
       redirect_to donator_path(@donator)
     elsif @needy && @needy.authenticate(params[:password])
-        session[:user_id] = @donator.id
-        session[:user_type] = :needy
-        redirect_to donator_path(@donator)
+      session[:user_id] = @needy.id
+      session[:user_type] = :needy
+      redirect_to needy_path(@needy)
     else
       flash[:messages] = "Incorrect Password or Username"
       redirect_to login_path
