@@ -6,15 +6,11 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions/sessions#create'
 
   namespace :needies, path: 'needy' do
-    #get '/login', to: 'sessions#login', as: 'login'
-    #post '/login', to: 'sessions#create'
     resources :items
   end
 
   namespace :donators do
     resources :items, except: [:new, :create, :destroy]
-    #get '/login', to: 'sessions#login', as: 'login'
-    #post '/login', to: 'sessions#create'
   end
 
   resources :needies, controller: 'needies/users', path: 'needy'
