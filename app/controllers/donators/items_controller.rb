@@ -1,7 +1,11 @@
 class Donators::ItemsController < ApplicationController
-  before_action :set_item, only: [:show]
+  #before_action :set_item, only: [:show]
 
-  def index
+
+
+  def show
+    #@items = Item.all.where(donator_id: params[:donator_id])
+    @user_id = params[:donator_id]
     @items = Item.all
   end
 

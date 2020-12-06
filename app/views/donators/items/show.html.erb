@@ -1,1 +1,8 @@
 <h1>Donators Hello There This is Items#Show</h1>
+<% @items.each do |i| %>
+  name: <%= i.name %><br>
+  quantity: <%= i.quantity %><br>
+  <br>
+<% end %>
+
+<h2>Your donator_id is: <%= @user_id %></h2>
