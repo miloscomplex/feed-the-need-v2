@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   end
 
   resources :donators, except: [:index], controller: 'donators/users' do
-    resource :items, except: [:new, :create, :destroy], controller: 'donators/items'
+    resources :needies, controller: 'donators/needies', only: [:index, :show], path: 'needy'
+      resource :items, except: [:new, :create, :destroy], controller: 'donators/items'
     # define custom routes since it should be displayed and edited as a set?
   end
 
