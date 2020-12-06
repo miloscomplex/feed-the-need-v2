@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions/sessions#login', as: 'login'
   post '/login', to: 'sessions/sessions#create'
 
+  get '/logout', to: 'sessions/sessions#logout', as: 'logout'
+
   resources :needies, controller: 'needies/users', path: 'needy' do
     resource :items, controller: 'needies/items'
   end

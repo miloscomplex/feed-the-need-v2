@@ -1,5 +1,6 @@
 class Donators::ItemsController < ApplicationController
   #before_action :set_item, only: [:show]
+  before_action :logged_in_donator?
 
 
 
@@ -23,6 +24,9 @@ class Donators::ItemsController < ApplicationController
 
   private
 
+  def logged_in_donator?
+    logged_in?
+  end
   def set_item
     @item = Item.find_by(id: params[:id])
   end

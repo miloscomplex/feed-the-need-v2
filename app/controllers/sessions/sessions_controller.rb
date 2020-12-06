@@ -22,4 +22,9 @@ class Sessions::SessionsController < ApplicationController
     end
   end
 
+  def logout
+    logout!
+    redirect_to login_path 
+  end
+
 end
