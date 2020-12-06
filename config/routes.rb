@@ -6,11 +6,12 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions/sessions#create'
 
   resources :needies, controller: 'needies/users', path: 'needy' do
-    resources :items, controller: 'needies/items'
+    resource :items, controller: 'needies/items'
   end
 
   resources :donators, except: [:index], controller: 'donators/users' do
-    resources :items, except: [:new, :create, :destroy], controller: 'donators/items'
+    resource :items, except: [:new, :create, :destroy], controller: 'donators/items'
+    # define custom routes since it should be displayed and edited as a set?
   end
 
   #resources :needies, controller: 'needies/users', path: 'needy'
