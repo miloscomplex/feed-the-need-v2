@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
 
-  belongs_to :needy
-  belongs_to :donator 
+  has_many :needies
+  has_many :donators
 
   validates :name, :quantity, presence: true
 
