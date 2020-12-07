@@ -15,10 +15,12 @@ class Needies::ItemsController  < ApplicationController
       redirect_to needy_path(@item.needies_id)
     else
       render :new
+    end
   end
 
   def show
     @items = Item.all
+    #binding.pry
   end
 
   def edit
@@ -46,8 +48,6 @@ class Needies::ItemsController  < ApplicationController
     else
       render :redirect_to
     end
-  end
-
     redirect_to needy_path(@item.needies_id)
   end
 
