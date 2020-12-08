@@ -18,6 +18,7 @@ class Donators::UsersController < ApplicationController
 
   def show
     @donator = Donator.find_by(id: params[:id])
+    @needies = Needy.all
   end
 
   private

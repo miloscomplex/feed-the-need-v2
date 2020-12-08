@@ -1,4 +1,24 @@
 <h1>Hello There <%= @donator.email %></h1>
+
 <h2>this is donators/users/show</h2>
-<p><%= link_to "Edit your profile", edit_donator_path %></p>
-<p><a href="/donators/<%= params[:donator_id] %>/destroy">Delete your account</a></p>
+
+  <p><%= link_to "Edit your profile", edit_donator_path %></p>
+  <p><a href="/donators/<%= params[:donator_id] %>/destroy">Delete your account</a></p>
+
+<h3>Your Recent activitiy</h3>
+  <p>Put recent activity list here last 3? query for 3 last writes</p>
+
+<h3>People In Need</h3>
+<% if @needies.empty? %>
+    <div class="list">
+      <p>There is no one currently in needy</p>
+    </div>
+  <% else %>
+    <% @needies.each do |needy| %>
+      <div>
+        <p>
+          <%= needy.name %> - <%= link_to "See Profile", donator_needy_path(needy.id) %>
+        </p>
+      </div>
+    <% end %>
+  <% end %>
