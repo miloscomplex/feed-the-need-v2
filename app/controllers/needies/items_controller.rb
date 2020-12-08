@@ -1,5 +1,7 @@
 class Needies::ItemsController  < ApplicationController
 
+  before_action: :needy_exists?
+
   def new
     if params[:needy_id] && !Needy.exists?(params[:needy_id])
       redirect_to login_path, alert: "Person in need not found."
@@ -26,7 +28,7 @@ class Needies::ItemsController  < ApplicationController
   def edit
     if params[:needy_id]
       needy = Needy.find_by(id: params[:needy_id])
-      if needy.nill?
+      if needy.nil?
         redirect_to login_path, alert: "Needy not found."
       else
         @item = needy.items.find_by(id: params[:id])

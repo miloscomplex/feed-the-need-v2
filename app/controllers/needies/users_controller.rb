@@ -1,5 +1,5 @@
 class Needies::UsersController < ApplicationController
-  # before_action :require_login, except: [:login]
+  before_action :require_login, except: [:login]
 
   def new
     @needy = Needy.new
@@ -37,7 +37,7 @@ class Needies::UsersController < ApplicationController
   end
 
   def logged_in?
-    session.include? :needy_id
+    redirect_to login_path unless session.include? :needy_id
   end
 
 end
