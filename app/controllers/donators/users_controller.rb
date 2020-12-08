@@ -1,5 +1,6 @@
 class Donators::UsersController < ApplicationController
   before_action :require_login, except: [:login, :new, :create]
+  before_action :set_donator, only: [:show]
 
   def new
     @donator = Donator.new
@@ -17,7 +18,6 @@ class Donators::UsersController < ApplicationController
   end
 
   def show
-    @donator = Donator.find_by(id: params[:id])
     @needies = Needy.all
   end
 
@@ -28,19 +28,19 @@ class Donators::UsersController < ApplicationController
   end
 
   def require_login
-    unless logged_in?
-      flash[:error] = "You must be logged in to access this section"
-      redirect_to donators_login_path
-    end
-  end
-
-  def require_login
-    binding.pry
     if !logged_in?
       flash[:error] = "You must be logged in to access this section"
       redirect_to login_path
     elsif !is_donator?
       flash[:error] = "You must be registered as a donator access this section"
+    end
+  end
+
+  def set_donator
+    @donator = Donator.find_by(id: params[:id])
+    if !@donator
+      flash[:error] = "Donator does not exist!"
+      redirect_to login_path
     end
   end
 

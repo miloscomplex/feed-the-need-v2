@@ -1,5 +1,6 @@
 class Needies::UsersController < ApplicationController
   before_action :require_login, except: [:login, :new, :create]
+  before_action :set_needy, only: [:show]
 
   def new
     @needy = Needy.new
@@ -19,9 +20,6 @@ class Needies::UsersController < ApplicationController
     @needy = Needy.find_by(id: params[:id])
   end
 
-  def show
-    @needy = Needy.find_by(id: params[:id])
-  end
 
   private
 
@@ -36,6 +34,14 @@ class Needies::UsersController < ApplicationController
       redirect_to login_path
     elsif !is_needy?
       flash[:error] = "You must be registered as a person in needy to access this section"
+      redirect_to login_path
+    end
+  end
+
+  def set_needy
+    @needy = Needy.find_by(id: params[:id])
+    if !@needy
+      flash[:error] = "Needy not found"
       redirect_to login_path
     end
   end

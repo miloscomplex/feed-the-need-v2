@@ -19,6 +19,8 @@
  }
 .error {
   color: red;
+  padding: 1.5em;
+  background-color: #eee;
 }
 
 .field_with_errors {
