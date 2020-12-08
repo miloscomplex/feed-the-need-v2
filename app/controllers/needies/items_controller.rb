@@ -2,7 +2,7 @@ class Needies::ItemsController  < ApplicationController
 
   def new
     if params[:needy_id] && !Needy.exists?(params[:needy_id])
-      redirect_to login_path, alert: "Artist not found."
+      redirect_to login_path, alert: "Person in need not found."
     else
       @item = Item.new(needy_id: params[:needy_id])
     end

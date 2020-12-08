@@ -1,0 +1,4 @@
+[ ] build out forms to add items for needy
+[ ] create dynamic/template navigations for Needy and Donators
+[ ] Set a set of static items and 3 empty fields to input your own
+[ ] Create the form for Donators to donate items [ limit to 5 per week ]

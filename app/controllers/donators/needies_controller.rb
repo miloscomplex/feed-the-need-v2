@@ -5,7 +5,14 @@ class Donators::NeediesController < ApplicationController
   end
 
   def show
-    @needy = Needy.find_by(id: params[:needy_id])
+    if params[:id] && !Needy.exists?(params[:id])
+      redirect_to donator_needies_path, alert: "Person in need not found"
+    else
+      @needy = Needy.find_by(id: params[:id])
+      # nested fields for donating needed items?
+      #binding.pry
+      @items = @needy.items
+    end
   end
 
 end
