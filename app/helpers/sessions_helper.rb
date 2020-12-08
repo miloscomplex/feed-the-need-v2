@@ -21,17 +21,17 @@ module SessionsHelper
     #edirect_to login_paths
     #session.delete(:user_id)
   end
-  
+
   def which_user?
     session[:user_type]
   end
 
   def is_donator?
-    which_user? == :donator
+    which_user? == "donator"
   end
 
   def is_needy?
-    which_user? == :needy
+    which_user? == "needy"
   end
 
 

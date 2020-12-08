@@ -1,5 +1,5 @@
 class Donators::UsersController < ApplicationController
-  #before_action :require_login, except: [:login]
+  before_action :require_login, except: [:login, :new, :create]
 
   def new
     @donator = Donator.new
@@ -34,8 +34,14 @@ class Donators::UsersController < ApplicationController
     end
   end
 
-  def logged_in?
-    session.include? :donator_id
+  def require_login
+    binding.pry
+    if !logged_in?
+      flash[:error] = "You must be logged in to access this section"
+      redirect_to login_path
+    elsif !is_donator?
+      flash[:error] = "You must be registered as a donator access this section"
+    end
   end
 
 end

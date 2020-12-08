@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  include ApplicationHelper 
+  include ApplicationHelper
   include SessionsHelper
 
 end

@@ -30,9 +30,12 @@ class Needies::UsersController < ApplicationController
   end
 
   def require_login
-    binding.pry
-    unless logged_in?
+    #binding.pry
+    if !logged_in?
       flash[:error] = "You must be logged in to access this section"
+      redirect_to login_path
+    elsif !is_needy?
+      flash[:error] = "You must be registered as a person in needy to access this section"
       redirect_to login_path
     end
   end
