@@ -1,4 +1,10 @@
 <h1>Hi <%= @needy.name %>! This is the Needy show page</h1>
 
+<% if @needy.items.empty? %>
+  <%= link_to "Create Your List of Needs", new_needy_items_path(@needy) %>
+<% else %>
+  <%= link_to "Edit Your List of Needs", edit_needy_items_path(@needy) %>
+<% end %>
+
 <%# need to check not null --> link_to "Edit Needs", edit_needy_item_path %>
 <%# link_to "Create a needs list", new_needy_items_path %>

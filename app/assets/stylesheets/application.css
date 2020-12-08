@@ -35,3 +35,7 @@ li {
   border: 1px solid;
   padding: 1em;
 }
+
+input {
+  margin-top: 1.5em;
+}

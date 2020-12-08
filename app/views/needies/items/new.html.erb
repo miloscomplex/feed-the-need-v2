@@ -1,12 +1,12 @@
 <h1>Needy New Items</h1>
 
 <%= form_with model: [:needy, @item], local: true do |form| %>
-  <%= needy_id_field(@item) %>
+  <%# needy_id_field(@item) %>
   <%= form.label :name %>
   <%= form.text_field :name %>
   <br>
   <%= form.label :quantity %>
   <%= form.text_field :quantity %>
   <br>
-  <%= form.hidden_field :needy_id, @needy.id %>
+  <%= form.submit %>
 <% end %>
