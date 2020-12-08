@@ -1,5 +1,5 @@
 class Needies::UsersController < ApplicationController
-  before_action :require_login, except: [:login]
+  before_action :require_login, except: [:login, :new, :create]
 
   def new
     @needy = Needy.new
@@ -30,14 +30,11 @@ class Needies::UsersController < ApplicationController
   end
 
   def require_login
+    binding.pry
     unless logged_in?
       flash[:error] = "You must be logged in to access this section"
-      redirect_to needy_login_path
+      redirect_to login_path
     end
-  end
-
-  def logged_in?
-    redirect_to login_path unless session.include? :needy_id
   end
 
 end
