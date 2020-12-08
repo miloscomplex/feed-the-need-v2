@@ -1,6 +1,6 @@
 class Needies::ItemsController  < ApplicationController
 
-  before_action: :needy_exists?
+  before_action :require_login
 
   def new
     if params[:needy_id] && !Needy.exists?(params[:needy_id])
@@ -57,6 +57,17 @@ class Needies::ItemsController  < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :quantity, :needy_id)
+  end
+
+  def require_login
+    #binding.pry
+    if !logged_in?
+      flash[:error] = "You must be logged in to access this section"
+      redirect_to login_path
+    elsif !is_needy?
+      flash[:error] = "You must be registered as a person in need to access this section"
+      redirect_to login_path
+    end
   end
 
 end

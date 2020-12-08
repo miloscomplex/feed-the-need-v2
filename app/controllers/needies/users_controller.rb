@@ -33,7 +33,7 @@ class Needies::UsersController < ApplicationController
       flash[:error] = "You must be logged in to access this section"
       redirect_to login_path
     elsif !is_needy?
-      flash[:error] = "You must be registered as a person in needy to access this section"
+      flash[:error] = "You must be registered as a person in need to access this section"
       redirect_to login_path
     end
   end
