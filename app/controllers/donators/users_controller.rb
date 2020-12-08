@@ -1,4 +1,6 @@
 class Donators::UsersController < ApplicationController
+  include DonatorsHelper
+
   before_action :require_login, except: [:login, :new, :create]
   before_action :set_donator, only: [:show]
 
@@ -25,15 +27,6 @@ class Donators::UsersController < ApplicationController
 
   def user_params
     params.require(:donator).permit(:name, :email, :password, :password_confirmation)
-  end
-
-  def require_login
-    if !logged_in?
-      flash[:error] = "You must be logged in to access this section"
-      redirect_to login_path
-    elsif !is_donator?
-      flash[:error] = "You must be registered as a donator access this section"
-    end
   end
 
   def set_donator

@@ -1,4 +1,5 @@
 class Donators::ItemsController < ApplicationController
+  include DonatorsHelper
   #before_action :set_item, only: [:show]
   before_action :logged_in_donator?
 
@@ -34,5 +35,4 @@ class Donators::ItemsController < ApplicationController
   def items_params
     params.require(:item).permit(:donator_id)
   end
-
 end

@@ -1,4 +1,5 @@
 class Donators::NeediesController < ApplicationController
+  include DonatorsHelper
 
   def index
     @needies = Needy.all
