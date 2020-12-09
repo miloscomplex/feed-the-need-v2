@@ -17,9 +17,6 @@ Rails.application.routes.draw do
     end
     # define custom routes since it should be displayed and edited as a set?
   end
-
-  #resources :needies, controller: 'needies/users', path: 'needy'
-  #resources :donators, except: [:index], controller: 'donators/users'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
 end

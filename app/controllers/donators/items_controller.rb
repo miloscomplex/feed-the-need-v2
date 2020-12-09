@@ -21,8 +21,6 @@ class Donators::ItemsController < ApplicationController
     redirect_to donator_path(@items.donator_id)
   end
 
-
-
   private
 
   def set_item
@@ -32,4 +30,12 @@ class Donators::ItemsController < ApplicationController
   def items_params
     params.require(:item).permit(:donator_id)
   end
+
+  def verify_user
+    if current_user != Donator.find_by(id: params[:needy_id])
+      flash[:error] = "Uh oh, something went wrong"
+      redirect_to donator_path(current_user.id)
+    end
+  end
+
 end
