@@ -10,7 +10,6 @@ class Sessions::SessionsController < ApplicationController
     if @donator && @donator.authenticate(params[:password])
       session[:user_id] = @donator.id
       session[:user_type] = :donator
-      #binding.pry
       redirect_to donator_path(@donator)
     elsif @needy && @needy.authenticate(params[:password])
       session[:user_id] = @needy.id
@@ -24,7 +23,7 @@ class Sessions::SessionsController < ApplicationController
 
   def logout
     logout!
-    redirect_to login_path 
+    redirect_to login_path
   end
 
 end

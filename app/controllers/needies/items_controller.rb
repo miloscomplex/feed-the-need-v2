@@ -1,6 +1,7 @@
 class Needies::ItemsController  < ApplicationController
+  include NeediesHelper
 
-  before_action :require_login
+  before_action :require_needy_login
 
   def new
     if params[:needy_id] && !Needy.exists?(params[:needy_id])
@@ -28,10 +29,11 @@ class Needies::ItemsController  < ApplicationController
   def edit
     if params[:needy_id]
       needy = Needy.find_by(id: params[:needy_id])
+      binding.pry
       if needy.nil?
-        redirect_to login_path, alert: "Needy not found."
+        redirect_to login_path, alert: "Needy not found. items_controller"
       else
-        @item = needy.items.find_by(id: params[:id])
+        @item = current_user.items.find_by(id: params[:id])
         @needy = needy
         redirect_to needy_path(needy), alert: "Item not found." if @needy.nil?
       end
