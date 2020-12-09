@@ -1,7 +1,8 @@
 class Needies::ItemsController  < ApplicationController
   include NeediesHelper
 
-  before_action :require_needy_login
+  before_action :require_needy_login, :verify_user
+
 
   def new
     if params[:needy_id] && !Needy.exists?(params[:needy_id])
@@ -29,7 +30,7 @@ class Needies::ItemsController  < ApplicationController
   def edit
     if params[:needy_id]
       needy = Needy.find_by(id: params[:needy_id])
-      binding.pry
+    #  binding.pry
       if needy.nil?
         redirect_to login_path, alert: "Needy not found. items_controller"
       else
@@ -61,14 +62,10 @@ class Needies::ItemsController  < ApplicationController
     params.require(:item).permit(:name, :quantity, :needy_id)
   end
 
-  def require_login
-    #binding.pry
-    if !logged_in?
-      flash[:error] = "You must be logged in to access this section"
-      redirect_to login_path
-    elsif !is_needy?
-      flash[:error] = "You must be registered as a person in need to access this section"
-      redirect_to login_path
+  def verify_user
+    if current_user != Needy.find_by(id: params[:needy_id])
+      flash[:error] = "Something went wrong"
+      redirect_to needy_path(current_user.id)
     end
   end
 
