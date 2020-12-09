@@ -64,7 +64,7 @@ class Needies::ItemsController  < ApplicationController
 
   def verify_user
     if current_user != Needy.find_by(id: params[:needy_id])
-      flash[:error] = "Something went wrong"
+      flash[:error] = "Uh oh, something went wrong"
       redirect_to needy_path(current_user.id)
     end
   end
