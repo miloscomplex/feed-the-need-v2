@@ -17,7 +17,7 @@
     <% @needies.each do |needy| %>
       <div>
         <p>
-          <%= needy.name %> - <%= link_to "See Profile", donator_needy_path(needy.id) %>
+          <%= needy.name %> - <%= link_to "See Profile", donator_needy_path(@donator.id, needy.id) %>
         </p>
       </div>
     <% end %>

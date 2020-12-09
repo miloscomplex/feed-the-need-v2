@@ -30,10 +30,11 @@ class Donators::UsersController < ApplicationController
   end
 
   def set_donator
-    @donator = Donator.find_by(id: params[:id])
-    if !@donator
-      flash[:error] = "Donator does not exist!"
+    if current_user != Donator.find_by(id: params[:id])
+      flash[:error] = "Uh oh, something went wrong"
       redirect_to login_path
+    else
+      @donator = Donator.find_by(id: params[:id])
     end
   end
 

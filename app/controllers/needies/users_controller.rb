@@ -8,6 +8,10 @@ class Needies::UsersController < ApplicationController
     @needy = Needy.new
   end
 
+  def index
+    redirect_to needy_path(current_user.id)
+  end
+
   def show
     # binding.pry
   end
@@ -22,22 +26,10 @@ class Needies::UsersController < ApplicationController
     end
   end
 
-  def index
-    @needy = Needy.find_by(id: params[:id])
-  end
-
-
   private
 
   def user_params
     params.require(:needy).permit(:name, :email, :password, :password_confirmation)
-  end
-
-  def verify_user
-    if current_user != Needy.find_by(id: params[:id])
-      flash[:error] = "Uh oh, something went wrong"
-      redirect_to login_path
-    end
   end
 
   def set_needy
