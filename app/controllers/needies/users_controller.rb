@@ -1,5 +1,7 @@
 class Needies::UsersController < ApplicationController
-  before_action :require_login, except: [:login, :new, :create]
+  include NeediesHelper
+
+  before_action :require_needy_login, except: [:new, :create]
   before_action :set_needy, only: [:show]
 
   def new
@@ -25,17 +27,6 @@ class Needies::UsersController < ApplicationController
 
   def user_params
     params.require(:needy).permit(:name, :email, :password, :password_confirmation)
-  end
-
-  def require_login
-    #binding.pry
-    if !logged_in?
-      flash[:error] = "You must be logged in to access this section"
-      redirect_to login_path
-    elsif !is_needy?
-      flash[:error] = "You must be registered as a person in need to access this section"
-      redirect_to login_path
-    end
   end
 
   def set_needy

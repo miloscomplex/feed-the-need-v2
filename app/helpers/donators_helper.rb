@@ -1,5 +1,6 @@
 module DonatorsHelper
-  def require_login
+
+  def require_donator_login
     if !logged_in?
       flash[:error] = "You must be logged in to access this section"
       redirect_to login_path
@@ -8,4 +9,5 @@ module DonatorsHelper
       redirect_to login_path
     end
   end
+
 end

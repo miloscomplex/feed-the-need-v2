@@ -1,6 +1,8 @@
 class Donators::NeediesController < ApplicationController
   include DonatorsHelper
 
+  before_action :require_donator_login
+  
   def index
     @needies = Needy.all
   end

@@ -1,7 +1,7 @@
 class Donators::UsersController < ApplicationController
   include DonatorsHelper
 
-  before_action :require_login, except: [:login, :new, :create]
+  before_action :require_donator_login, except: [:login, :new, :create]
   before_action :set_donator, only: [:show]
 
   def new
