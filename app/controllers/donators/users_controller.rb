@@ -2,7 +2,7 @@ class Donators::UsersController < ApplicationController
   include DonatorsHelper
 
   before_action :require_donator_login, except: [:login, :new, :create]
-  before_action :set_donator, only: [:show]
+  before_action :set_donator, only: [:show, :edit]
 
   def new
     @donator = Donator.new
@@ -26,7 +26,7 @@ class Donators::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:donator).permit(:name, :email, :password, :password_confirmation)
+    params.require(:donator).permit(:name, :email, :about, :password, :password_confirmation)
   end
 
   def set_donator

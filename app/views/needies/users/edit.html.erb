@@ -1,5 +1,6 @@
 <h1>Needy User Edit</h1>
 
+<%= link_to "Back to Profile", needy_path(@needy) %>
 <%= form_with model: @needy, local: true do |form| %>
   <%= form.label :name %>
   <%= form.text_field :name %>

@@ -2,7 +2,7 @@ class Needies::UsersController < ApplicationController
   include NeediesHelper
 
   before_action :require_needy_login, except: [:new, :create]
-  before_action :set_needy, only: [:show]
+  before_action :set_needy, only: [:show, :edit]
 
   def new
     @needy = Needy.new
@@ -29,7 +29,7 @@ class Needies::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:needy).permit(:name, :email, :password, :password_confirmation)
+    params.require(:needy).permit(:name, :email, :bio, :password, :password_confirmation)
   end
 
   def set_needy
