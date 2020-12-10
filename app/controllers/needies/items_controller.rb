@@ -34,7 +34,7 @@ class Needies::ItemsController  < ApplicationController
       if needy.nil?
         redirect_to login_path, alert: "Needy not found. items_controller"
       else
-        @item = current_user.items.find_by(id: params[:id])
+        @items = current_user.items
         @needy = needy
         redirect_to needy_path(needy), alert: "Item not found." if @needy.nil?
       end

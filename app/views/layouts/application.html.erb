@@ -12,20 +12,29 @@
   </head>
 
   <body>
-    <nav>
-      <a href="/">Home</a> | <a href="/logout">LogOut</a>
-    </nav>
-    <%# if flash[:error]&.present?  %>
-      <%# flash[:error].each do |flash| %>
-    <%# some div  %>
-    <%# end %>
-    <% flash.each do |name, message| %>
-      <div class="error">
-        <%# binding.pry %>
-        <%= message %>
-      </div>
-    <% end %>
+      <div id="wrapper">
+        <nav>
+          <a href="/">Home</a> | <a href="/logout">LogOut</a>
+        </nav>
 
-    <%= yield %>
+        <div id="content">
+          <%# if flash[:error]&.present?  %>
+            <%# flash[:error].each do |flash| %>
+          <%# some div  %>
+          <%# end %>
+          <% flash.each do |name, message| %>
+            <div class="error">
+              <%# binding.pry %>
+              <%= message %>
+            </div>
+          <% end %>
+
+          <%= yield %>
+
+          <div class="footer">
+            <p>Feed The Need</p>
+          </div>
+        </div>
+    </div>
   </body>
 </html>

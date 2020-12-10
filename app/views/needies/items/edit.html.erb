@@ -1,3 +1,15 @@
 <h1>Needy Items Edit</h1>
 
-<h2>Hi <%= @needy.name %></h2>
+<h2>Hi <%= @needy.name %> here is your list.</h2>
+
+<ul>
+  <% @items.each do |item| %>
+    <li class="list">
+      Name: <%= item.name %><br>
+      Quantity: <%= item.quantity %>
+    </li>
+  <% end %>
+</ul>
+
+<a href="/needy/<%= @needy.id %>/items/delete">Delete Your List</a>
+<%= link_to "Back to your profile", needy_path(@needy) %>

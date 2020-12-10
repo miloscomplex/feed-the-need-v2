@@ -1,10 +1,21 @@
 <h1>Hi <%= @needy.name %>! This is the Needy show page</h1>
 
+<%= link_to "Edit your profile", edit_needy_path(@needy) %><br>
 <% if @needy.items.empty? %>
   <%= link_to "Create Your List of Needs", new_needy_items_path(@needy) %>
 <% else %>
   <%= link_to "Edit Your List of Needs", edit_needy_items_path(@needy) %>
 <% end %>
 
+<h2>Your List Of Needs</h2>
+  <ul>
+    <% @needy.items.each do |item| %>
+      <li>
+        Name: <%= item.name %><br>
+        Quantity: <%= item.quantity %>
+      </li>
+    <% end %>
+  </ul>
+<h2>Recently donated items</h2>
 <%# need to check not null --> link_to "Edit Needs", edit_needy_item_path %>
 <%# link_to "Create a needs list", new_needy_items_path %>
