@@ -90,6 +90,9 @@ input {
 
 textarea {
   margin-top: 1.5em;
+  font-family: Roboto;
+  width: 200px;
+  height: 80px;
 }
 
 h1  {
@@ -103,6 +106,17 @@ h2  {
 
 .about {
   font-size: 1.1em;
+}
+
+.needy_list {
+  padding-bottom: 1.5em;
+}
+
+.needy_list h4 {
+  font-size: 1.2em;
+  margin-bottom: 0;
+  border-bottom: solid 1px;
+  padding-bottom: .25em;
 }
 
 .footer {
