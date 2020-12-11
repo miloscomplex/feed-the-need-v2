@@ -11,5 +11,18 @@
   <% end %>
 </ul>
 
+<h2>Make this a nested form?</h2>
+<%= form_with model: @item, local: true do |form| %>
+  <%= form.fields_for @items do |i| %>
+    <%= i.label :name %>
+    <%= i.text_field :name %>
+    <br>
+    <%= form.label :quantity %>
+    <%= form.text_field :quantity %><br>
+  <% end %>
+  <%= form.submit %>
+<% end %>
+
+<br>
 <a href="/needy/<%= @needy.id %>/items/delete">Delete Your List</a>
 <%= link_to "Back to your profile", needy_path(@needy) %>

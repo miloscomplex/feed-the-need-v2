@@ -1,5 +1,9 @@
 <h1>Hi <%= @needy.name %>! This is the Needy show page</h1>
 
+<span><strong>Your Email:</strong> <%= @needy.email %></span>
+
+<p><strong>Your Bio:</strong> <%= @needy.bio %></p>
+
 <%= link_to "Edit your profile", edit_needy_path(@needy) %><br>
 <% if @needy.items.empty? %>
   <%= link_to "Create Your List of Needs", new_needy_items_path(@needy) %>
