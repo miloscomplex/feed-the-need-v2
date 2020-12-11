@@ -5,6 +5,7 @@ class Needy < ApplicationRecord
   has_many :donators, through: :items
 
 
-  validates :name, :email, :password, presence: true
+  validates :name, :email, presence: true
+  validates :password, presence: true, on: :create 
   validates :email, uniqueness: true
 end

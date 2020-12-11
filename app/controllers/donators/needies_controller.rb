@@ -10,8 +10,7 @@ class Donators::NeediesController < ApplicationController
   def show
     if params[:id] && !Needy.exists?(params[:id])
       flash[:error] = "Person in need not found"
-      redirect_to donator_needies_path
-
+      redirect_to donator_path(current_user.id)
     else
       @needy = Needy.find_by(id: params[:id])
       # nested fields for donating needed items?
@@ -27,6 +26,8 @@ class Donators::NeediesController < ApplicationController
     if current_user != Donator.find_by(id: params[:donator_id])
       flash[:error] = "Uh oh, something went wrong"
       redirect_to donator_path(current_user.id)
+    else
+      @donator = Donator.find_by(id: params[:donator_id])
     end
   end
 

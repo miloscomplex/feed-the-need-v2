@@ -1,7 +1,8 @@
 class Sessions::SessionsController < ApplicationController
 
   def login
-    @donator = Donator.new
+    #flash.now[:messages] = "Incorrect Password or Username"
+    # @donator = Donator.new
   end
 
   def create

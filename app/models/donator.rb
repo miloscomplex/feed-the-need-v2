@@ -3,10 +3,10 @@ class Donator < ApplicationRecord
   has_many :items
   # need to further explore utitizling source
   # has_many :donated_items, through: :items, source: :needy
-  has_many :needy, through: :items 
+  has_many :needy, through: :items
 
-  validates :name, :email, :password, presence: true
+  validates :name, :email, :password, presence: true, on: :create
   validates :email, uniqueness: true
-  validates :password, confirmation: true
+  validates :password, confirmation: true, on: :create
 
 end

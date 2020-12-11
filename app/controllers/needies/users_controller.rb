@@ -26,6 +26,12 @@ class Needies::UsersController < ApplicationController
     end
   end
 
+
+  def update
+    @needy.update(user_params)
+    redirect_to needy_path(@needy)
+  end
+
   private
 
   def user_params

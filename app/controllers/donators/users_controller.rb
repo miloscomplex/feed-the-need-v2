@@ -2,7 +2,7 @@ class Donators::UsersController < ApplicationController
   include DonatorsHelper
 
   before_action :require_donator_login, except: [:login, :new, :create]
-  before_action :set_donator, only: [:show, :edit]
+  before_action :set_donator, only: [:show, :edit, :update]
 
   def new
     @donator = Donator.new
@@ -22,6 +22,12 @@ class Donators::UsersController < ApplicationController
   def show
     @needies = Needy.all
   end
+
+  def update
+    @donator.update(user_params)
+    redirect_to donator_path(@donator)
+  end
+
 
   private
 
