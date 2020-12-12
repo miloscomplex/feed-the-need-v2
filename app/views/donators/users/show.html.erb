@@ -6,8 +6,10 @@
   <p><%= link_to "Edit your profile", edit_donator_path %></p>
   <p><a href="/donators/<%= params[:donator_id] %>/destroy">Delete your account</a></p>
 
+<div class="activity">
 <h3>Your Recent activitiy</h3>
   <p>Put recent activity list here last 3? query for 3 last writes</p>
+</div>
 
 <h3>People In Need</h3>
 <% if @needies.empty? %>
@@ -18,7 +20,7 @@
     <% @needies.each do |needy| %>
       <div class="needy_list">
         <h4>Name: <%= needy.name %></h4>
-        <p>
+        <p class="about">
         <strong><%= needy.first_name %>'s Bio:</strong><br>
         <%= needy.bio %>
         </p>
