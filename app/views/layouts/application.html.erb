@@ -27,10 +27,6 @@
         </nav>
 
         <div id="content">
-          <%# if flash[:error]&.present?  %>
-            <%# flash[:error].each do |flash| %>
-          <%# some div  %>
-          <%# end %>
           <% flash.each do |name, message| %>
             <div class="error">
               <%# binding.pry %>

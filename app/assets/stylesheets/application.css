@@ -37,8 +37,9 @@
 
  nav {
    background-color: #1e6694;
-   padding: 4em 1.5em;
+   padding: 5em 3em;
    font-weight: 700;
+   font-size: 1.2em;
    color: #c9edf5;
    text-transform: uppercase;
    background-image: url("alley_bw.jpg");
