@@ -5,11 +5,6 @@
 <p class="bio"><strong>Your Bio:</strong> <%= @needy.bio %></p>
 
 <%= link_to "Edit your profile", edit_needy_path(@needy) %><br>
-<% if @needy.items.empty? %>
-  <%= link_to "Create Your List of Needs", new_needy_items_path(@needy) %>
-<% else %>
-  <%= link_to "Edit Your List of Needs", edit_needy_items_path(@needy) %>
-<% end %>
 
 <h2>Your List Of Needs</h2>
   <ul>
@@ -20,21 +15,28 @@
       </li>
     <% end %>
   </ul>
-<div class="activity">
-<h2>Recently donated items</h2>
-<ul>
-  <% if @donated_items.present? %>
-    <% @donated_items.each do |item| %>
-      <li>
-        Item: <%= item.name %><br>
-        Quantity: <%= item.quantity %><br>
-        Donated By: <%= item.find_donator.name %>
-      </li>
-    <% end %>
+
+  <% if @needy.items.empty? %>
+    <%= link_to "Create Your List of Needs", new_needy_items_path(@needy) %>
   <% else %>
-    <li>No Items have been donated</li>
+    <%= link_to "Edit Your List of Needs", edit_needy_items_path(@needy) %>
   <% end %>
-</ul>
+  
+<div class="activity">
+  <h2>Recently donated items</h2>
+    <ul>
+      <% if @donated_items.present? %>
+        <% @donated_items.each do |item| %>
+          <li>
+            Item: <%= item.name %><br>
+            Quantity: <%= item.quantity %><br>
+            Donated By: <%= item.find_donator.name %>
+          </li>
+        <% end %>
+      <% else %>
+        <li>No Items have been donated</li>
+      <% end %>
+    </ul>
 </div>
 <%# need to check not null --> link_to "Edit Needs", edit_needy_item_path %>
 <%# link_to "Create a needs list", new_needy_items_path %>
