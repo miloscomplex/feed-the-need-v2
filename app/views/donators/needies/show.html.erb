@@ -1,5 +1,7 @@
 <h1>This is <%= @needy.name %></h1>
-<h2>This person is in need of:</h2>
+<h2>Bio</h2>
+<p class="about"><%= @needy.bio %></p>
+<h3>This person is in need of:</h3>
 <ul>
   <% if @items.empty? %>
     <li>Nothing at this time</li>
