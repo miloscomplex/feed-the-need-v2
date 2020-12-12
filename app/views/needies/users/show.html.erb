@@ -2,7 +2,7 @@
 
 <span><strong>Your Email:</strong> <%= @needy.email %></span>
 
-<p><strong>Your Bio:</strong> <%= @needy.bio %></p>
+<p class="bio"><strong>Your Bio:</strong> <%= @needy.bio %></p>
 
 <%= link_to "Edit your profile", edit_needy_path(@needy) %><br>
 <% if @needy.items.empty? %>
@@ -21,5 +21,18 @@
     <% end %>
   </ul>
 <h2>Recently donated items</h2>
+<ul>
+  <% if @donated_items.present? %>
+    <% @donated_items.each do |item| %>
+      <li>
+        Item: <%= item.name %><br>
+        Quantity: <%= item.quantity %><br>
+        Donated By: <%= item.find_donator.name %>
+      </li>
+    <% end %>
+  <% else %>
+    <li>No Items have been donated</li>
+  <% end %>
+</ul>
 <%# need to check not null --> link_to "Edit Needs", edit_needy_item_path %>
 <%# link_to "Create a needs list", new_needy_items_path %>

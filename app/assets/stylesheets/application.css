@@ -108,6 +108,10 @@ h2  {
   font-size: 1.1em;
 }
 
+.bio {
+  width: 50%;
+}
+
 .needy_list {
   padding-bottom: 1.5em;
 }

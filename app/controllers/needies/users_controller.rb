@@ -13,7 +13,7 @@ class Needies::UsersController < ApplicationController
   end
 
   def show
-    # binding.pry
+    @donated_items = @needy.items.where.not('donator_id' => nil)
   end
 
   def create

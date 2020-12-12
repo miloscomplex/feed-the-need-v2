@@ -14,11 +14,12 @@
   <body>
       <div id="wrapper">
         <nav>
-          <% if is_donator? %>
-            <%= link_to "Home", donator_path(@current_user) %> |
-          <% elsif is_needy? %>
-            <%= link_to "Home", needy_path(@current_user) %> |
-          <% end %>
+          <%# <% if is_donator? %>
+            <%# link_to "Home", donator_path(@current_user) %> |
+          <%# end %>
+          <%# if is_needy? %>
+            <%# link_to "Home", needy_path(@current_user.id) %> |
+          <%# end %> %>
           <% if logged_in? %>
             <a href="/logout">LogOut</a>
           <% else %>
