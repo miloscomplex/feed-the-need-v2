@@ -20,6 +20,7 @@
       </li>
     <% end %>
   </ul>
+<div class="activity">
 <h2>Recently donated items</h2>
 <ul>
   <% if @donated_items.present? %>
@@ -34,5 +35,6 @@
     <li>No Items have been donated</li>
   <% end %>
 </ul>
+</div>
 <%# need to check not null --> link_to "Edit Needs", edit_needy_item_path %>
 <%# link_to "Create a needs list", new_needy_items_path %>
