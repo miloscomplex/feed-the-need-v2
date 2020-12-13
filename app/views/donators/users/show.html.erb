@@ -4,7 +4,6 @@
 <h2>this is donators/users/show</h2>
 
   <p><%= link_to "Edit your profile", edit_donator_path %></p>
-  <p><a href="/donators/<%= params[:donator_id] %>/destroy">Delete your account</a></p>
 
 <div class="activity">
 <h3>Your Recent activitiy</h3>
@@ -28,3 +27,5 @@
       </div>
     <% end %>
   <% end %>
+
+  <p><a class="plain" href="/donators/<%= params[:donator_id] %>/destroy">Delete your account</a></p>

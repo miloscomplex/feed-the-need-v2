@@ -24,7 +24,9 @@
  burnt orange #9f5c26
  grey brown #cbae89
  light cyan #b9edf8
+ ultra-light cyan #d9f0f5
  cyan #61d0e7
+
 
  */
 
@@ -38,7 +40,7 @@
 
  nav {
    background-color: #1e6694;
-   padding: 5em 3em;
+   padding: 6em 3em;
    font-weight: 700;
    font-size: 1.2em;
    color: #c9edf5;
@@ -71,7 +73,7 @@
    background-color: #267a77;
    display: inline-block;
    padding: .6em .8em;
-   margin: .25em;
+   margin: .25em .25em .25em 0;
    text-decoration: none;
    text-transform: uppercase;
    font-size: .8em;
@@ -80,6 +82,13 @@
 
  #content a:hover {
    background-color: #2e938f;
+ }
+
+ #content a.plain {
+   color: #267a77;
+   background-color: white;
+   padding: .6em 0;
+   margin: 0;
  }
 
 ul  {
@@ -159,7 +168,7 @@ h3 {
 }
 
 .activity {
-  background-color: #c9edf5;
+  background-color: #d9f0f5;
   padding: 1.5em;
   border-radius: 5px;
   margin: 2em 0;

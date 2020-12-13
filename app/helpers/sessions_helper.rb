@@ -1,5 +1,4 @@
 module SessionsHelper
-  # Logs in the given user.
 
   # Returns the current logged-in user (if any).
   def current_user
@@ -18,8 +17,6 @@ module SessionsHelper
   # Logs out the current user.
   def logout!
     session.clear
-    #edirect_to login_paths
-    #session.delete(:user_id)
   end
 
   def which_user?
@@ -33,8 +30,5 @@ module SessionsHelper
   def is_needy?
     which_user? == "needy"
   end
-
-
-
 
 end
