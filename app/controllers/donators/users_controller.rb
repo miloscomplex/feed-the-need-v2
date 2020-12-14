@@ -12,6 +12,7 @@ class Donators::UsersController < ApplicationController
     @donator = Donator.new(user_params)
     if @donator.save
       session[:user_id] = @donator.id
+      session[:user_type] = :donator
       redirect_to donator_path(@donator)
     else
       flash[:messages] = "Something went wrong"

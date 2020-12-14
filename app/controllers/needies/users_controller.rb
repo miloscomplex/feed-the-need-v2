@@ -23,7 +23,7 @@ class Needies::UsersController < ApplicationController
       session[:user_type] = :needy
       redirect_to needy_path(@needy)
     else
-      redirect_to new_needy_path
+      render :new
     end
   end
 
