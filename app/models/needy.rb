@@ -6,7 +6,7 @@ class Needy < ApplicationRecord
 
 
   validates :name, :email, :bio, presence: true
-  validates :email, uniqueness: true
+  validates :email, uniqueness: { case_sensitive: false }
   validates :password, presence: true, on: :create
 
   def first_name

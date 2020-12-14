@@ -19,7 +19,8 @@ class Needies::UsersController < ApplicationController
   def create
     @needy = Needy.new(user_params)
     if @needy.save
-      session[:needy_id] = @needy.id
+      session[:user_id] = @needy.id
+      session[:user_type] = :needy
       redirect_to needy_path(@needy)
     else
       redirect_to new_needy_path
