@@ -7,6 +7,15 @@ class Donator < ApplicationRecord
 
   validates :name, :email, :password, presence: true, on: :create
   validates :email, uniqueness: true
+  validate :email_in_use
   validates :password, confirmation: true, on: :create
+
+  private
+
+  def email_in_use
+    if Needy.find_by(email: self.email)
+      errors.add(:email, "This is email is already registered as a person in need")
+    end
+  end
 
 end

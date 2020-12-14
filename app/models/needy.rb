@@ -15,6 +15,8 @@ class Needy < ApplicationRecord
     first_name.first
   end
 
+  private
+  
   def email_in_use
     if Donator.find_by(email: self.email)
       errors.add(:email, "This is email is already registered as a Donator")
