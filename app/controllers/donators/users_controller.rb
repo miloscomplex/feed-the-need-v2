@@ -15,7 +15,7 @@ class Donators::UsersController < ApplicationController
       session[:user_type] = :donator
       redirect_to donator_path(@donator)
     else
-      flash[:messages] = "Something went wrong"
+      # flash[:messages] = "Something went wrong"
       render :new
     end
   end

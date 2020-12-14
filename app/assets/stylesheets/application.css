@@ -137,6 +137,9 @@ h3 {
   padding: 1em;
   background-color: #a31637;
   border-radius: 10px;
+  font-size: 1em;
+  border: 0;
+  font-weight: 500;
 }
 
 .field_with_errors {
