@@ -53,6 +53,7 @@
  nav a {
    text-decoration-line: none;
    color: #c9edf5;
+   margin: 0 .5em;
  }
 
  nav a:hover {
@@ -117,6 +118,7 @@ textarea {
 }
 
 h1  {
+  color: #9f5c26;
   border-bottom: 1px solid;
   padding-bottom: .5em;
 }
