@@ -6,7 +6,8 @@ class Donator < ApplicationRecord
   has_many :needy, through: :items
 
   validates :name, :email, :password, presence: true, on: :create
-  validates :email, uniqueness: true
+  validates :email, uniqueness: { case_sensitive: false }
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validate :email_in_use
   validates :password, confirmation: true, on: :create
 

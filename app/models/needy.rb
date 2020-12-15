@@ -6,7 +6,8 @@ class Needy < ApplicationRecord
 
 
   validates :name, :email, :bio, presence: true
-  validates :email, uniqueness: { case_sensitive: false }
+  validates :email, uniqueness: { case_sensitive: false } #avoids duplicate emails that just vary in case
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } #utiilizing mail REGEX 
   validate :email_in_use
   validates :password, presence: true, on: :create
 
@@ -16,7 +17,7 @@ class Needy < ApplicationRecord
   end
 
   private
-  
+
   def email_in_use
     if Donator.find_by(email: self.email)
       errors.add(:email, "This is email is already registered as a Donator")
