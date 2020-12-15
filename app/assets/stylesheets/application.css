@@ -19,6 +19,7 @@
  blue black #103852;
  sea foam green #7fc0ae
  sea foam hover #2e938f
+ sea foam hover text #9ad5c6
  marine green #267a77
  grey blue #275775
  burnt orange #9f5c26
@@ -90,6 +91,10 @@
    background-color: white;
    padding: .6em 0;
    margin: 0;
+ }
+
+ #content a.plain:hover {
+   color: #9ad5c6;
  }
 
 ul  {

@@ -7,7 +7,7 @@ class Needy < ApplicationRecord
 
   validates :name, :email, :bio, presence: true
   validates :email, uniqueness: { case_sensitive: false } #avoids duplicate emails that just vary in case
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } #utiilizing mail REGEX 
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } #utiilizing mail REGEX to validate email format
   validate :email_in_use
   validates :password, presence: true, on: :create
 

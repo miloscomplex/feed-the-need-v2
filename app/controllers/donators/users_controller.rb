@@ -20,6 +20,13 @@ class Donators::UsersController < ApplicationController
     end
   end
 
+  def index
+    if current_user
+      redirect_to donator_path(current_user.id)
+    end
+    #donator helper redirects with message if not logged_in
+  end
+
   def show
     @needies = Needy.all
   end

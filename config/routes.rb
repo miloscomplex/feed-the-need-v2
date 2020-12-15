@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resource :items, controller: 'needies/items'
   end
 
-  resources :donators, except: [:index], controller: 'donators/users' do
+  resources :donators, controller: 'donators/users' do
     resources :needies, controller: 'donators/needies', only: [:index, :show], path: 'needy' do
       resource :items, except: [:new, :create, :destroy], controller: 'donators/items'
     end

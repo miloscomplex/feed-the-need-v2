@@ -5,7 +5,9 @@ class Donator < ApplicationRecord
   # has_many :donated_items, through: :items, source: :needy
   has_many :needy, through: :items
 
-  validates :name, :email, :password, presence: true, on: :create
+  validates :name, :email, presence: true
+  # validates :name, format: { with: /\w+, \w+/, message: "A first and last is required" }
+  validates :password, presence: true, on: :create
   validates :email, uniqueness: { case_sensitive: false }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validate :email_in_use
