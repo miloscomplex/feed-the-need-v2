@@ -9,6 +9,9 @@ class Needies::ItemsController  < ApplicationController
       redirect_to login_path, alert: "Person in need not found."
     else
       @item = Item.new(needy_id: params[:needy_id])
+      @needy = Needy.find_by(id: params[:needy_id])
+      @items = @needy.items
+      binding.pry
     end
   end
 

@@ -1,9 +1,7 @@
 <h1>Needy New Items</h1>
 
 <%= form_with model: [:needy, @item], local: true do |form| %>
-  <% binding.pry %>
   <%# needy_id_field(@item) %>
-  <%= form.hidden_field :needy_id %>
   <%= form.label :name %>
   <%= form.text_field :name %>
   <br>
