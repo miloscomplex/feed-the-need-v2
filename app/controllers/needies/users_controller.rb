@@ -18,6 +18,7 @@ class Needies::UsersController < ApplicationController
 
   def create
     @needy = Needy.new(user_params)
+    binding.pry
     if @needy.save
       session[:user_id] = @needy.id
       session[:user_type] = :needy

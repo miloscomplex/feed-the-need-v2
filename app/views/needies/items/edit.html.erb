@@ -12,7 +12,7 @@
 </ul>
 
 <h2>Make this a nested form?</h2>
-<%= form_with model: @item, local: true do |form| %>
+<%= form_with model: @item, url: "/needy/#{@needy.id}/items", local: true do |form| %>
   <%= form.fields_for @items do |i| %>
     <%= i.label :name %>
     <%= i.text_field :name %>

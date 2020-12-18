@@ -3,6 +3,7 @@ class Needy < ApplicationRecord
 
   has_many :items
   has_many :donators, through: :items
+  accepts_nested_attributes_for :items 
 
 
   validates :name, :email, :bio, presence: true
