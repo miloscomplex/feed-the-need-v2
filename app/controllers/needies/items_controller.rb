@@ -11,15 +11,16 @@ class Needies::ItemsController  < ApplicationController
       @item = Item.new(needy_id: params[:needy_id])
       @needy = Needy.find_by(id: params[:needy_id])
       @items = @needy.items
-      binding.pry
     end
   end
 
   def create
+    # binding.pry
+    @needy = Needy.find_by(id: params[:needy_id])
     @item = Item.new(item_params)
 
     if @item.save
-      redirect_to needy_path(@item.needies_id)
+      redirect_to needy_path(@item.needy_id)
     else
       render :new
     end
