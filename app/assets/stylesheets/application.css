@@ -113,6 +113,10 @@ li {
   margin-top: .5em;
 }
 
+li:hover {
+  background-color: #d9f0f5;
+}
+
 input {
   margin-top: 1.5em;
 }
