@@ -15,7 +15,7 @@ class Donators::NeediesController < ApplicationController
       @needy = Needy.find_by(id: params[:id])
       # nested fields for donating needed items?
       #binding.pry
-      @items = @needy.items
+      @items = @needy.not_donated
     end
   end
 

@@ -9,9 +9,7 @@
     <li>Nothing at this time</li>
   <% else %>
     <% @items.each do |item| %>
-      <% if item.donator_id.nil? %>
-        <li><input type="checkbox" name="item[<%= item.id %>]"><%= item.name %> - quantity: <%= item.quantity %></input></li>
-      <% end %>
+      <li><input type="checkbox" name="item[<%= item.id %>]"><%= item.name %> - quantity: <%= item.quantity %></input></li>
     <% end %>
   <% end %>
 </ul>
