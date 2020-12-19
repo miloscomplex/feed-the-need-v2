@@ -11,15 +11,24 @@
   <% end %>
 </ul>
 
-<h2>Make this a nested form?</h2>
-<%= form_with model: @item, url: "/needy/#{@needy.id}/items", local: true do |form| %>
-  <%= form.fields_for @items do |i| %>
-    <%= i.label :name %>
-    <%= i.text_field :name %>
-    <br>
-    <%= form.label :quantity %>
-    <%= form.text_field :quantity %><br>
-  <% end %>
+<h2>Add an item </h2>
+<% if @item.errors.any? %>
+  <ul>
+    <% @item.errors.full_messages.each do |msg| %>
+      <li class="error"><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: [:needy, @item], local: true do |form| %>
+  <%# needy_id_field(@item) %>
+  <input type="hidden" name="item[needy_id]" value="<%= @needy.id %>">
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <br>
+  <%= form.label :quantity %>
+  <%= form.text_field :quantity %>
+  <br>
   <%= form.submit %>
 <% end %>
 

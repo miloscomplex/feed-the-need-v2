@@ -39,6 +39,7 @@ class Needies::ItemsController  < ApplicationController
         redirect_to login_path, alert: "Needy not found. items_controller"
       else
         @items = current_user.items
+        @item = Item.new(needy_id: params[:needy_id])
         @needy = needy
         redirect_to needy_path(needy), alert: "Item not found." if @needy.nil?
       end
@@ -53,9 +54,10 @@ class Needies::ItemsController  < ApplicationController
     @item.update(item_params)
 
     if @item.save
+      flash[:update] = "Item saved!"
       redirect_to needy_path(@item.needies_id)
     else
-      render :redirect_to
+      render :edit
     end
     redirect_to needy_path(@item.needies_id)
   end
