@@ -117,6 +117,10 @@ input {
   margin-top: 1.5em;
 }
 
+input[type='checkbox'] {
+  margin: auto .5em auto 0;
+}
+
 textarea {
   margin-top: 1.5em;
   font-family: Roboto;
