@@ -3,7 +3,7 @@ class Needy < ApplicationRecord
 
   has_many :items
   has_many :donators, through: :items
-  accepts_nested_attributes_for :items 
+  accepts_nested_attributes_for :items
 
 
   validates :name, :email, :bio, presence: true
@@ -15,6 +15,12 @@ class Needy < ApplicationRecord
   def first_name
     first_name = self.name.split(/ /)
     first_name.first
+  end
+
+  def not_donated
+    self.items.select do |item|
+      item.donator_id.nil?
+    end
   end
 
   private
