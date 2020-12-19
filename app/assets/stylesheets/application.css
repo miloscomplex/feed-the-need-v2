@@ -143,6 +143,10 @@ h3 {
   text-transform: uppercase;
 }
 
+.emphasis {
+  font-size: 1.3em;
+  font-weight: 700;
+}
 
 .error {
   margin-top: .5em;
