@@ -2,6 +2,8 @@
 <h2>Bio</h2>
 <p class="about"><%= @needy.bio %></p>
 <h3>This person is in need of:</h3>
+<h3>Use colleciton_check_boxes?</h3>
+<p>f.collection_check_boxes :category_ids, Category.all, :id, :name but use model method to filter </p>
 <ul>
   <% if @items.empty? %>
     <li>Nothing at this time</li>
