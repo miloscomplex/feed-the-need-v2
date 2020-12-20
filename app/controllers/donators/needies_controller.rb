@@ -21,9 +21,8 @@ class Donators::NeediesController < ApplicationController
 
   def donate_items
     user_params[:items].each do |params|
-      binding.pry
       item_id = params[0] #item_id
-      item_donated = params[1]['id']
+      item_donated = params[1]['id'] # 0 or 1 for checkBox 
       if item_donated == "1" #if checked
         if item_id && !Item.exists?(item_id)
           flash[:error] = "Error, an item was not found"

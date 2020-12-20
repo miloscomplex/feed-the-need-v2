@@ -17,7 +17,7 @@ class Sessions::SessionsController < ApplicationController
       session[:user_type] = :needy
       redirect_to needy_path(@needy)
     else
-      flash[:messages] = "Incorrect Password or Username"
+      flash[:error] = "Incorrect Password or Username"
       redirect_to login_path
     end
   end

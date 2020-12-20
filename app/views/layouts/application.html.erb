@@ -30,9 +30,7 @@
 
         <div id="content">
           <% flash.each do |name, message| %>
-            <%= binding.pry %>
-            <div class="error">
-              <%# binding.pry %>
+            <div class=<%= name %>>
               <%= message %>
             </div>
           <% end %>
