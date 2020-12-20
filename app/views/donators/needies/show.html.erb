@@ -12,8 +12,8 @@
       <% @items.each do |item| %>
         <li><input type="checkbox" name="item[<%= item.id %>]"><%= item.name %> - quantity: <%= item.quantity %></input></li>
       <% end %>
-      <%= form.submit "Donate Items" %>
       <p class="callout">Note: You are only able to donate a <strong>total</strong> of 5 items per Month.</p>
+      <%= form.submit "Donate Items" %>
     <% end %>
   <% end %>
 </ul>
