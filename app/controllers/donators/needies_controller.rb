@@ -29,21 +29,15 @@ class Donators::NeediesController < ApplicationController
           flash[:error] = "Error, an item was not found"
           redirect_to donator_path(current_user.id)
         else
-          binding.pry
+          # binding.pry
           @item = Item.find_by(id: item_id)
           @item.donator_id = @donator.id
-          if @item.save
-
-          else
-            flash[:error] = "An error, while donating an item"
-            redirect_to donator_path(current_user.id)
-          end
+          redirect_to donator_path(current_user.id), flash: { errror: "An error, while donating an item" } unless @item.save
         end
       end
-      flash[:message] = "Items donated successfully!"
-      redirect_to donator_path(current_user.id)
     end
-
+    flash[:alert] = "Items donated successfully!"
+    redirect_to donator_path(current_user.id)
   end
 
   private
