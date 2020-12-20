@@ -19,7 +19,15 @@ class Donators::NeediesController < ApplicationController
     end
   end
 
+  def donate_items
+    binding.pry
+  end
+
   private
+
+  def user_params
+    params.permit(:items, items: [:donator_id])
+  end
 
   def verify_donator
     #binding.pry

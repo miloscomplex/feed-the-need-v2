@@ -5,12 +5,27 @@
 <h3>Use colleciton_check_boxes?</h3>
 <p>f.collection_check_boxes :category_ids, Category.all, :id, :name but use model method to filter </p>
 <ul>
+
   <% if @items.empty? %>
     <li>Nothing at this time</li>
   <% else %>
-    <%= form_with model: @donator, local: true do |form| %>
+    <%= form_with url: donator_donate_items_path do |form| %>
+      <ul>
+        <% @items.each_with_index do |item, index| %>
+          <li>
+            <%= fields_for "items[]", item do |f| %>
+              <%= f.check_box :donator_id %>
+              <%= f.label item["name"] %> - quantity: <%= f.label item["quantity"] %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+      <%= form.submit "Donate Items" %>
+    <% end %>
+
+    <%= form_with url: donator_donate_items_path, local: true do |form| %>
       <% @items.each do |item| %>
-        <li><input type="checkbox" name="item[<%= item.id %>]"><%= item.name %> - quantity: <%= item.quantity %></input></li>
+        <li><input type="checkbox" name="[donator][donate_items][<%= item.id %>][]" value="checked" ><%= item.name %> - quantity: <%= item.quantity %></input></li>
       <% end %>
       <p class="callout">Note: You are only able to donate a <strong>total</strong> of 5 items per Month.</p>
       <%= form.submit "Donate Items" %>

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :donators, controller: 'donators/users' do
+    post '/donate_items', to: 'donators/needies#donate_items', as: 'donate_items'
     resources :needies, controller: 'donators/needies', only: [:index, :show], path: 'needy' do
       resource :items, except: [:new, :create, :destroy], controller: 'donators/items'
     end

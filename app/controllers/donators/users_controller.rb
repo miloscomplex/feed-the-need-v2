@@ -32,15 +32,21 @@ class Donators::UsersController < ApplicationController
   end
 
   def update
-    @donator.update(user_params)
-    redirect_to donator_path(@donator)
+    if params[:donator][:donate_items]&.present?
+      binding.pry
+      # process add donator_id to items
+      redirect_to donator_path(@donator)
+    else
+      @donator.update(user_params)
+      redirect_to donator_path(@donator)
+    end
   end
 
 
   private
 
   def user_params
-    params.require(:donator).permit(:name, :email, :about, :password, :password_confirmation)
+    params.require(:donator).permit(:name, :email, :about, :password, :password_confirmation, :donate_items )
   end
 
   def set_donator

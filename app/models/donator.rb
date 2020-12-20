@@ -4,6 +4,7 @@ class Donator < ApplicationRecord
   # need to further explore utitizling source
   # has_many :donated_items, through: :items, source: :needy
   has_many :needy, through: :items
+  accepts_nested_attributes_for :items
 
   validates :name, :email, presence: true
   # validates :name, format: { with: /\w+, \w+/, message: "A first and last is required" }
