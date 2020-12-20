@@ -8,7 +8,7 @@
   <% if @items.empty? %>
     <li>Nothing at this time</li>
   <% else %>
-    <%= form_with model: @needy, local: true do |form| %>
+    <%= form_with model: @donator, local: true do |form| %>
       <% @items.each do |item| %>
         <li><input type="checkbox" name="item[<%= item.id %>]"><%= item.name %> - quantity: <%= item.quantity %></input></li>
       <% end %>

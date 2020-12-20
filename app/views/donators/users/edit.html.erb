@@ -10,5 +10,6 @@
   <%= form.label :about %>
   <%= form.text_area :about %>
   <br>
-  <%= form.submit %>
+    <%= form.submit "Update Your Profile" %>
 <% end %>
+<%= link_to "Back to Your Profile", donator_path(@donator), class: "plain" %>
