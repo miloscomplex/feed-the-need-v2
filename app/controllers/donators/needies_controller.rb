@@ -1,7 +1,7 @@
 class Donators::NeediesController < ApplicationController
   include DonatorsHelper
 
-  before_action :require_donator_login, :verify_donator
+  before_action :require_donator_login, :verify_donator, only: [:index, :show, :donate_items]
 
   def index
     @needies = Needy.all
@@ -20,13 +20,36 @@ class Donators::NeediesController < ApplicationController
   end
 
   def donate_items
-    binding.pry
+    user_params[:items].each do |params|
+      binding.pry
+      item_id = params[0] #item_id
+      item_donated = params[1]['id']
+      if item_donated == "1" #if checked
+        if item_id && !Item.exists?(item_id)
+          flash[:error] = "Error, an item was not found"
+          redirect_to donator_path(current_user.id)
+        else
+          binding.pry
+          @item = Item.find_by(id: item_id)
+          @item.donator_id = @donator.id
+          if @item.save
+
+          else
+            flash[:error] = "An error, while donating an item"
+            redirect_to donator_path(current_user.id)
+          end
+        end
+      end
+      flash[:message] = "Items donated successfully!"
+      redirect_to donator_path(current_user.id)
+    end
+
   end
 
   private
 
   def user_params
-    params.permit(:items, items: [:donator_id])
+    params.permit(:donator_id, :items, items: [:id])
   end
 
   def verify_donator
