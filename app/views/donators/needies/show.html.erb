@@ -8,9 +8,24 @@
   <% if @items.empty? %>
     <li>Nothing at this time</li>
   <% else %>
-    <% @items.each do |item| %>
-      <li><input type="checkbox" name="item[<%= item.id %>]"><%= item.name %> - quantity: <%= item.quantity %></input></li>
+    <%= form_with model: @needy, local: true do |form| %>
+      <% @items.each do |item| %>
+        <li><input type="checkbox" name="item[<%= item.id %>]"><%= item.name %> - quantity: <%= item.quantity %></input></li>
+      <% end %>
+      <%= form.submit "Donate Items" %>
+      <p class="callout">Note: You are only able to donate a <strong>total</strong> of 5 items per Month.</p>
     <% end %>
+  <% end %>
+</ul>
+<ul>
+  <%= form_with model: @needy, local: true do |form| %>
+    <%= hidden_field :needy_id, value: @needy.id %>
+    <%= form.collection_check_boxes :items, Item.all, :id, :name do |cb| %>
+      <% cb.label do %>
+        <li><%= cb.check_box + cb.text %></li>
+      <% end %>
+    <% end %>
+    <%= form.submit %>
   <% end %>
 </ul>
 <%= link_to "Back to Your Profile", donator_path(@donator) %>
