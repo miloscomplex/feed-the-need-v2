@@ -27,4 +27,16 @@ class Sessions::SessionsController < ApplicationController
     redirect_to root_path
   end
 
+  def google_login
+    user_email = request.env['omniauth.auth']['info']['email']
+    user_name = request.env['omniauth.auth']['info']['name']
+    @donator = Donator.find_or_create_by(email: user_email) do |user|
+      user.name = user_name
+      user.password = SecureRandom.hex
+    end
+    session[:user_id] = @donator.id
+    session[:user_type] = :donator
+    redirect_to donator_path(@donator)
+  end
+
 end

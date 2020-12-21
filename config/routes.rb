@@ -17,4 +17,6 @@ Rails.application.routes.draw do
     # define custom routes since it should be displayed and edited as a set?
   end
 
+  get '/auth/google_oauth2/callback', to: 'sessions/sessions#google_login'
+
 end
