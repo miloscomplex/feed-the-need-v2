@@ -5,8 +5,8 @@ class Needies::ItemsController  < ApplicationController
 
 
   def new
-    if params[:needy_id] && !Needy.exists?(params[:needy_id])
-      redirect_to login_path, alert: "Person in need not found."
+    if params[:needy_id] && @needy.items.exists?
+      redirect_to needy_path(@needy), flash: { error: "You have already created your first 3 items" }
     else
       @item = Item.new
       @items = @needy.items
@@ -14,12 +14,10 @@ class Needies::ItemsController  < ApplicationController
   end
 
   def create
-    binding.pry
-
-    @needy.items.build([{name: :name_0, quantity: :quantity_0}, {name: :name_1, quantity: :quantity_1}, {name: :name_2, quantity: :quantity_2}])
-    @item = Item.new(item_params)
-    if @item.save
-      redirect_to needy_path(@item.needy_id)
+    @needy.items.build([{name: item_params[:name_0], quantity: item_params[:quantity_0]}, {name: item_params[:name_1], quantity: item_params[:quantity_1]}, {name: item_params[:name_2], quantity: item_params[:quantity_2]}])
+    # @item = Item.new(item_params)
+    if @needy.save
+      redirect_to needy_path(@needy)
     else
       render :new
     end
@@ -27,38 +25,43 @@ class Needies::ItemsController  < ApplicationController
 
   def show
     redirect_to needy_path(@needy)
-    #binding.pry
   end
 
   def edit
     if params[:needy_id]
-      needy = Needy.find_by(id: params[:needy_id])
-    #  binding.pry
-      if needy.nil?
-        redirect_to login_path, flash: { error: "Needy not found. items_controller" }
+      if @needy.nil?
+        redirect_to login_path, flash: { error: "Needy list not found. items_controller" }
       else
-        @items = current_user.not_donated
+        @items = @needy.not_donated
         @item = Item.new(needy_id: params[:needy_id])
-        @needy = needy
         redirect_to needy_path(needy), alert: "Item not found." if @needy.nil?
       end
-    else
-      @item = Item.find(params[:id])
     end
   end
 
   def update
-    @item = Item.find(params[:id])
-
-    @item.update(item_params)
-
-    if @item.save
-      flash[:alert] = "Item saved!"
-      redirect_to needy_path(@item.needies_id)
+    if item_params.nil?
+      flash[:error] = "Uh oh, something went wrong"
+      redirect_to needy_path(@needy)
     else
-      render :edit
+      item_params[:items].each do |k,v|
+        @item = Item.find_by(id: k)
+        @item.update(name: v[:name], quantity: v[:quantity])
+      end
     end
-    redirect_to needy_path(@item.needies_id)
+    if item_params[:name].present?
+      # add new item
+      @needy.items.build(name: item_params[:name], quantity: item_params[:quantity])
+      if @needy.save
+        flash[:alert] = "Item(s) saved!"
+        redirect_to needy_path(@needy)
+      else
+        flash[:error] = "Uh oh, something went wrong"
+        redirect_to needy_path(@needy)
+      end
+    end
+    flash[:alert] = "Items have been updated."
+    redirect_to needy_path(@needy)
   end
 
   def destroy
@@ -69,7 +72,7 @@ class Needies::ItemsController  < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:needy_id, :name_0, :quantity_0, :name_1, :quantity_1, :name_2, :quantity_2)
+    params.permit(:needy_id, :name, :quantity, :name_0, :quantity_0, :name_1, :quantity_1, :name_2, :quantity_2, items: [ :id, :name, :quantity])
   end
 
   def verify_user

@@ -32,19 +32,13 @@ class Donators::UsersController < ApplicationController
   end
 
   def update
-    if params[:donator][:donate_items]&.present?
-      binding.pry
-      # process add donator_id to items
-      redirect_to donator_path(@donator)
-    else
-      @donator.update(user_params)
-      redirect_to donator_path(@donator)
-    end
+    @donator.update(user_params)
+    redirect_to donator_path(@donator)
   end
 
   def destroy
-    @donaotr.destroy
-    redirect_to needy_path(@needy)
+    @donator.destroy
+    redirect_to donator_path(@donator)
   end
 
   private
