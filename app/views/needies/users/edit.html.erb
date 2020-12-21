@@ -13,3 +13,5 @@
   <br>
   <%= form.submit "Update Your Profile" %>
 <% end %>
+
+<%= link_to "Delete Your Profile", needy_path, method: "delete", data: { confirm: "Are you sure you want to delete your profile?" }, class: "plain" %>

@@ -14,9 +14,10 @@ class Needies::ItemsController  < ApplicationController
   end
 
   def create
-    @needy = Needy.find_by(id: params[:needy_id])
-    @item = Item.new(item_params)
     binding.pry
+
+    @needy.items.build([{name: :name_0, quantity: :quantity_0}, {name: :name_1, quantity: :quantity_1}, {name: :name_2, quantity: :quantity_2}])
+    @item = Item.new(item_params)
     if @item.save
       redirect_to needy_path(@item.needy_id)
     else
@@ -34,7 +35,7 @@ class Needies::ItemsController  < ApplicationController
       needy = Needy.find_by(id: params[:needy_id])
     #  binding.pry
       if needy.nil?
-        redirect_to login_path, flash: { error: "Needy not found. items_controller" }
+        redirect_to login_path, flash:  error: "Needy not found. items_controller" }
       else
         @items = current_user.not_donated
         @item = Item.new(needy_id: params[:needy_id])
@@ -68,7 +69,7 @@ class Needies::ItemsController  < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :quantity, :needy_id)
+    params.require(:item).permit(:needy_id, :name_0, :quantity_0, :name_1, :quantity_1, :name_2, :quantity_2)
   end
 
   def verify_user

@@ -42,6 +42,10 @@ class Donators::UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @donaotr.destroy
+    redirect_to needy_path(@needy)
+  end
 
   private
 

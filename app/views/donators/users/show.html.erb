@@ -28,4 +28,4 @@
     <% end %>
   <% end %>
 
-  <p><a class="plain" href="/donators/<%= params[:donator_id] %>/destroy">Delete your account</a></p>
+<p><%= link_to "Delete Your Account", donator_path, method: "delete", data: { confirm: "Are you sure you want to delete your Account?" }, class: "plain" %></p>

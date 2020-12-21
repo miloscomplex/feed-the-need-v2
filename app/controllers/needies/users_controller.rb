@@ -33,6 +33,12 @@ class Needies::UsersController < ApplicationController
     redirect_to needy_path(@needy)
   end
 
+  def destroy
+    @needy.destroy
+    redirect_to needy_path(@needy)
+  end
+
+
   private
 
   def user_params
