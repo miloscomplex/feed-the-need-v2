@@ -7,17 +7,14 @@ Rails.application.routes.draw do
 
   get '/logout', to: 'sessions/sessions#logout', as: 'logout'
 
-  resources :needies, controller: 'needies/users', path: 'needy' do
+  resources :needies, controller: 'needies/users', path: 'needy', except: [:index] do
     resource :items, controller: 'needies/items'
   end
 
   resources :donators, controller: 'donators/users' do
     post '/donate_items', to: 'donators/needies#donate_items', as: 'donate_items'
-    resources :needies, controller: 'donators/needies', only: [:index, :show], path: 'needy' do
-      resource :items, except: [:new, :create, :destroy], controller: 'donators/items'
-    end
+    resources :needies, controller: 'donators/needies', only: [:index, :show], path: 'needy'
     # define custom routes since it should be displayed and edited as a set?
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
 end

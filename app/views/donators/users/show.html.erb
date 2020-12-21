@@ -1,7 +1,7 @@
 <h1>Hello There, <%= @donator.name %></h1>
+<h2>This is your personal homepage</h2>
 <span><strong>Your registered email is:</strong> <%= @donator.email %></span>
 <p class="about"><strong>About You:</strong> <%= @donator.about %></p>
-<h2>this is donators/users/show</h2>
 
   <p><%= link_to "Edit your profile", edit_donator_path %></p>
 
@@ -28,4 +28,4 @@
     <% end %>
   <% end %>
 
-<p><%= link_to "Delete Your Account", donator_path, method: "delete", data: { confirm: "Are you sure you want to delete your Account?" }, class: "plain" %></p>
+<p><%= link_to "Delete Your Profile", donator_path, method: "delete", data: { confirm: "Are you sure you want to delete your Profile?" }, class: "plain" %></p>

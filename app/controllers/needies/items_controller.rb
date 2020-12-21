@@ -35,7 +35,7 @@ class Needies::ItemsController  < ApplicationController
       needy = Needy.find_by(id: params[:needy_id])
     #  binding.pry
       if needy.nil?
-        redirect_to login_path, flash:  error: "Needy not found. items_controller" }
+        redirect_to login_path, flash: { error: "Needy not found. items_controller" }
       else
         @items = current_user.not_donated
         @item = Item.new(needy_id: params[:needy_id])
