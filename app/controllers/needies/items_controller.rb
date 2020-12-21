@@ -8,7 +8,7 @@ class Needies::ItemsController  < ApplicationController
     if params[:needy_id] && @needy.items.exists?
       redirect_to needy_path(@needy), flash: { error: "You have already created your first 3 items" }
     else
-      @item = Item.new
+      @item = Item.new()
       @items = @needy.items
     end
   end
@@ -54,10 +54,8 @@ class Needies::ItemsController  < ApplicationController
       @needy.items.build(name: item_params[:name], quantity: item_params[:quantity])
       if @needy.save
         flash[:alert] = "Item(s) saved!"
-        redirect_to needy_path(@needy)
       else
         flash[:error] = "Uh oh, something went wrong"
-        redirect_to needy_path(@needy)
       end
     end
     flash[:alert] = "Items have been updated."

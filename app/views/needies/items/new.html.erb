@@ -8,7 +8,7 @@
 <% end %>
 
 <p>Start off your list with 3 items. You can add additional items in the edit your list link after it's creation. Pleae keep items within reason and 3 items are required</p>
-<%= form_with model: [:needy, @item], local: true do |form| %>
+<%= form_with url: needy_items_path, local: true do |form| %>
   <input type="hidden" name="item[needy_id]" value="<%= @needy.id %>">
     <%= form.fields_for :items do |f| %>
         <% 3.times do |i| %>
