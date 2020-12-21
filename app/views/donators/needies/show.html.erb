@@ -15,7 +15,7 @@
             <% end %>
           </li>
         <% end %>
-      <p class="callout">Note: You are only able to donate a <strong>total</strong> of 8 items per Month.</p>
+      <p class="callout">Note: You are only able to donate a <strong>total</strong> of 8 items per Month. You have made <strong><%= pluralize(@donation_count, 'donation') %></strong>.</p>
       <%= form.submit "Donate Items" %>
     <% end %>
   <% end %>

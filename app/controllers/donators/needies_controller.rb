@@ -16,13 +16,14 @@ class Donators::NeediesController < ApplicationController
       # nested fields for donating needed items?
       #binding.pry
       @items = @needy.not_donated
+      @donation_count = @donator.donation_count
     end
   end
 
   def donate_items
     user_params[:items].each do |params|
       item_id = params[0] #item_id
-      item_donated = params[1]['id'] # 0 or 1 for checkBox 
+      item_donated = params[1]['id'] # 0 or 1 for checkBox
       if item_donated == "1" #if checked
         if item_id && !Item.exists?(item_id)
           flash[:error] = "Error, an item was not found"
@@ -30,8 +31,13 @@ class Donators::NeediesController < ApplicationController
         else
           # binding.pry
           @item = Item.find_by(id: item_id)
-          @item.donator_id = @donator.id
-          redirect_to donator_path(current_user.id), flash: { errror: "An error, while donating an item" } unless @item.save
+          if @donator.donation_count < 8
+            @item.donator_id = @donator.id
+            redirect_to donator_path(@donator), flash: { error: "An error, while donating an item" } unless @item.save
+          else
+            flash[:error] = "You have exceeded the limit of donations"
+            redirect_to donator_path(@donator)
+          end
         end
       end
     end
