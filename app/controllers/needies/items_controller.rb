@@ -8,17 +8,15 @@ class Needies::ItemsController  < ApplicationController
     if params[:needy_id] && !Needy.exists?(params[:needy_id])
       redirect_to login_path, alert: "Person in need not found."
     else
-      @item = Item.new(needy_id: params[:needy_id])
-      @needy = Needy.find_by(id: params[:needy_id])
+      @item = Item.new
       @items = @needy.items
     end
   end
 
   def create
-    # binding.pry
     @needy = Needy.find_by(id: params[:needy_id])
     @item = Item.new(item_params)
-
+    binding.pry
     if @item.save
       redirect_to needy_path(@item.needy_id)
     else
@@ -27,7 +25,7 @@ class Needies::ItemsController  < ApplicationController
   end
 
   def show
-    @items = Item.all
+    redirect_to needy_path(@needy)
     #binding.pry
   end
 
@@ -36,9 +34,9 @@ class Needies::ItemsController  < ApplicationController
       needy = Needy.find_by(id: params[:needy_id])
     #  binding.pry
       if needy.nil?
-        redirect_to login_path, alert: "Needy not found. items_controller"
+        redirect_to login_path, flash: { error: "Needy not found. items_controller" }
       else
-        @items = current_user.items
+        @items = current_user.not_donated
         @item = Item.new(needy_id: params[:needy_id])
         @needy = needy
         redirect_to needy_path(needy), alert: "Item not found." if @needy.nil?
@@ -54,12 +52,17 @@ class Needies::ItemsController  < ApplicationController
     @item.update(item_params)
 
     if @item.save
-      flash[:update] = "Item saved!"
+      flash[:alert] = "Item saved!"
       redirect_to needy_path(@item.needies_id)
     else
       render :edit
     end
     redirect_to needy_path(@item.needies_id)
+  end
+
+  def destroy
+    @needy.items.destroy_all
+    redirect_to needy_path(@needy)
   end
 
   private
@@ -72,6 +75,8 @@ class Needies::ItemsController  < ApplicationController
     if current_user != Needy.find_by(id: params[:needy_id])
       flash[:error] = "Uh oh, something went wrong"
       redirect_to needy_path(current_user.id)
+    else
+      @needy = Needy.find_by(id: params[:needy_id])
     end
   end
 

@@ -33,5 +33,5 @@
 <% end %>
 
 <br>
-<a href="/needy/<%= @needy.id %>/items/delete">Delete Your List</a>
-<%= link_to "Back to your profile", needy_path(@needy) %>
+<%= link_to "Back to your profile", needy_path(@needy) %><br>
+<%= link_to "Delete Your List", needy_items_path, method: "delete", data: { confirm: "Are you sure you want to delete your list?" }, class: "plain" %>

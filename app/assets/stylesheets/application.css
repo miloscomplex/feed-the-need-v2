@@ -107,10 +107,11 @@ li {
   list-style-type: none;
   font-size: 1.2em;
   font-weight: 700;
-  border: 1px solid;
+  border: 1px solid #999999;
   padding: 1em;
   text-transform: capitalize;
   margin-top: .5em;
+  border-radius: 3px;
 }
 
 li:hover {

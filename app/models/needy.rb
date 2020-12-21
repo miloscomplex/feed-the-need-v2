@@ -1,7 +1,7 @@
 class Needy < ApplicationRecord
   has_secure_password
 
-  has_many :items
+  has_many :items, dependent: :destroy
   has_many :donators, through: :items
   accepts_nested_attributes_for :items
 
