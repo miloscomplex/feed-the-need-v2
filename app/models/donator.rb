@@ -14,6 +14,10 @@ class Donator < ApplicationRecord
   validate :email_in_use
   validates :password, confirmation: true, on: :create
 
+  def donation_count
+    Item.all.where(donator_id: self.id ).count 
+  end
+
   private
 
   def email_in_use

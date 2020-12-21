@@ -10,6 +10,7 @@
   <% if @activity.empty? %>
     <p>You have no recent activity to display</p>
   <% else %>
+    <p>You have made <%= pluralize(@donation_count, 'donation') %></p>
     <% @activity.each do |item| %>
       <li>
         Name: <%= item.name %><br>
@@ -20,7 +21,7 @@
   <% end %>
 </div>
 
-<h3>People In Need</h3>
+<h2>People In Need</h2>
 <% if @needies.empty? %>
     <div class="list">
       <p>There is no one currently in needy</p>
