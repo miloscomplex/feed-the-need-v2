@@ -29,6 +29,8 @@ class Donators::UsersController < ApplicationController
 
   def show
     @needies = Needy.all
+    @activity = Item.where(donator_id: @donator.id).last(3)
+    binding.pry
   end
 
   def update
