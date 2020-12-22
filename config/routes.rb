@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :donators, controller: 'donators/users' do
     post '/donate_items', to: 'donators/needies#donate_items', as: 'donate_items'
     resources :needies, controller: 'donators/needies', only: [:index, :show], path: 'needy'
+    resources :items, controller: 'donators/items', only: [:index]
     # define custom routes since it should be displayed and edited as a set?
   end
 

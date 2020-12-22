@@ -15,7 +15,8 @@ class Donator < ApplicationRecord
   validates :password, confirmation: true, on: :create
 
   def donation_count
-    Item.all.where(donator_id: self.id ).count 
+    Item.all.where(donator_id: self.id ).count
+    # items.count 
   end
 
   private
