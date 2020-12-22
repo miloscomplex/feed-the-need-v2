@@ -16,7 +16,7 @@ class Donator < ApplicationRecord
 
   def donation_count
     Item.all.where(donator_id: self.id ).count
-    # items.count 
+    # self.items.count 
   end
 
   private

@@ -14,6 +14,7 @@ class Needies::ItemsController  < ApplicationController
   end
 
   def create
+    # has_many nested 
     @needy.items.build([{name: item_params[:name_0], quantity: item_params[:quantity_0]}, {name: item_params[:name_1], quantity: item_params[:quantity_1]}, {name: item_params[:name_2], quantity: item_params[:quantity_2]}])
     # @item = Item.new(item_params)
     if @needy.save
