@@ -2,7 +2,7 @@ class Needies::UsersController < ApplicationController
   include NeediesHelper
 
   before_action :require_needy_login, except: [:new, :create]
-  before_action :set_needy, only: [:show, :edit, :update]
+  before_action :set_needy, only: [:show, :edit, :update, :destroy]
 
   def new
     @needy = Needy.new

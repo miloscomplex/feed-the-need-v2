@@ -2,7 +2,7 @@ class Donators::UsersController < ApplicationController
   include DonatorsHelper
 
   before_action :require_donator_login, except: [:login, :new, :create]
-  before_action :set_donator, only: [:show, :edit, :update]
+  before_action :set_donator, only: [:show, :edit, :update, :destroy]
 
   def new
     @donator = Donator.new
@@ -39,6 +39,7 @@ class Donators::UsersController < ApplicationController
   end
 
   def destroy
+    binding.pry
     @donator.destroy
     redirect_to donator_path(@donator)
   end

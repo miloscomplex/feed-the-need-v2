@@ -23,6 +23,7 @@ class Donators::NeediesController < ApplicationController
   def donate_items
     user_params[:items].each do |params|
       item_id = params[0] #item_id
+
       item_donated = params[1]['id'] # 0 or 1 for checkBox
       if item_donated == "1" #if checked
         if item_id && !Item.exists?(item_id)
@@ -32,6 +33,8 @@ class Donators::NeediesController < ApplicationController
           # binding.pry
           @item = Item.find_by(id: item_id)
           if @donator.donation_count < 8
+            # validation then .save 
+
             @item.donator_id = @donator.id
             redirect_to donator_path(@donator), flash: { error: "An error, while donating an item" } unless @item.save
           else

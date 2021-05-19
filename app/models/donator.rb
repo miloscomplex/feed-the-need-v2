@@ -13,10 +13,11 @@ class Donator < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validate :email_in_use
   validates :password, confirmation: true, on: :create
+  validate :donation_count 
 
   def donation_count
     Item.all.where(donator_id: self.id ).count
-    # self.items.count 
+    # self.items.count
   end
 
   private

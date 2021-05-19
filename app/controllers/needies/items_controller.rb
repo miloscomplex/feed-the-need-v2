@@ -9,12 +9,14 @@ class Needies::ItemsController  < ApplicationController
       redirect_to needy_path(@needy), flash: { error: "You have already created your first 3 items" }
     else
       @item = Item.new()
+      # nested form add nested form object
       @items = @needy.items
     end
   end
 
   def create
-    # has_many nested 
+    # has_many nested
+    # binding.pry
     @needy.items.build([{name: item_params[:name_0], quantity: item_params[:quantity_0]}, {name: item_params[:name_1], quantity: item_params[:quantity_1]}, {name: item_params[:name_2], quantity: item_params[:quantity_2]}])
     # @item = Item.new(item_params)
     if @needy.save
@@ -41,7 +43,7 @@ class Needies::ItemsController  < ApplicationController
   end
 
   def update
-    if item_params.nil?
+    if item_params.nil? || items_params[:items].nil?
       flash[:error] = "Uh oh, something went wrong"
       redirect_to needy_path(@needy)
     else
