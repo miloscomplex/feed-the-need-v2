@@ -5,7 +5,6 @@ class CreateNeedies < ActiveRecord::Migration[6.0]
       t.string :password_digest
       t.string :name
       t.string :bio
-
       t.timestamps
     end
   end
