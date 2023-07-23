@@ -40,4 +40,4 @@
 yarn-debug.log*
 .yarn-integrity
 # Environment variables
-.env 
+.env
