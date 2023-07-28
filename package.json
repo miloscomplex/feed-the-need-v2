@@ -1,5 +1,5 @@
 {
-  "name": "Feed_The_Need",
+  "name": "feed_the_need",
   "private": true,
   "dependencies": {
     "@rails/actioncable": "^6.0.0",
@@ -10,7 +10,8 @@
   },
   "version": "0.1.0",
   "engines": {
-    "node": "18.16.1"
+    "node": "18.16.1",
+    "npm": "9.8.1"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.11.0"
